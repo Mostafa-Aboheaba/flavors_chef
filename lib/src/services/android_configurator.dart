@@ -13,8 +13,88 @@ class AndroidConfigurator {
   final Stdout stdout;
 
   Future<void> apply(List<FlavorDefinition> flavors) async {
+    await _ensureBaseManifestUsesStringResource();
     await _updateGradleFile(flavors);
     await _ensureSourceSets(flavors);
+  }
+
+  Future<void> _ensureBaseManifestUsesStringResource() async {
+    final manifestFile = File(
+      p.join(
+        context.projectRoot.path,
+        'android',
+        'app',
+        'src',
+        'main',
+        'AndroidManifest.xml',
+      ),
+    );
+    if (!manifestFile.existsSync()) {
+      stdout.writeln(
+        '  • Skipping main AndroidManifest.xml update (file not found)',
+      );
+      return;
+    }
+    final content = await manifestFile.readAsString();
+    final labelPattern = RegExp(r'android:label="([^"]+)"');
+    final match = labelPattern.firstMatch(content);
+    if (match == null) {
+      await _ensureBaseAppNameString();
+      return;
+    }
+    final current = match.group(1);
+    if (current == '@string/app_name') {
+      await _ensureBaseAppNameString();
+      return;
+    }
+    final updated = content.replaceFirst(
+      labelPattern,
+      'android:label="@string/app_name"',
+    );
+    await manifestFile.writeAsString(updated);
+    stdout.writeln(
+      '  • Updated main Android manifest label to use @string/app_name',
+    );
+
+    await _ensureBaseAppNameString();
+  }
+
+  Future<void> _ensureBaseAppNameString() async {
+    final valuesDir = Directory(
+      p.join(
+        context.projectRoot.path,
+        'android',
+        'app',
+        'src',
+        'main',
+        'res',
+        'values',
+      ),
+    );
+    if (!valuesDir.existsSync()) {
+      valuesDir.createSync(recursive: true);
+    }
+    final stringsFile = File(p.join(valuesDir.path, 'strings.xml'));
+    if (!stringsFile.existsSync()) {
+      await stringsFile.writeAsString('''
+<resources>
+    <string name="app_name">${context.appName}</string>
+</resources>
+''');
+      stdout.writeln('  • Created default Android app_name string resource');
+      return;
+    }
+
+    final content = await stringsFile.readAsString();
+    if (content.contains('name="app_name"')) {
+      return;
+    }
+    final updated = content.replaceFirst(
+      '</resources>',
+      '    <string name="app_name">${context.appName}</string>\n</resources>',
+    );
+    await stringsFile.writeAsString(updated);
+    stdout.writeln('  • Added app_name string to existing resources');
   }
 
   Future<void> _updateGradleFile(List<FlavorDefinition> flavors) async {
@@ -63,8 +143,7 @@ class AndroidConfigurator {
       }
 
       manifestFile.writeAsStringSync('''
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="${flavor.androidApplicationId}">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application android:label="@string/app_name"/>
 </manifest>
 ''');

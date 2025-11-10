@@ -76,6 +76,21 @@ Every field accepted in the wizard can be provided in the file (including
 optional suffixes and environment variables). Relative asset paths are resolved
 from the project root.
 
+### Manual iOS Finishing Steps
+
+Flavor Chef generates per-flavor plist overlays and assets, but iOS still needs
+scheme/build configuration wiring in Xcode. Until a future release automates
+this, follow these steps after running the CLI:
+
+1. Open `ios/Runner.xcodeproj` in Xcode.
+2. Duplicate the `Runner` scheme once per flavor (e.g. `Runner-development`).
+3. Create matching build configurations (`Debug-development`, `Release-development`, …) or repurpose existing ones.
+4. For each configuration, point `Info.plist File` to the generated overlay under `ios/FlavorChef/<flavor>.plist`.
+5. Adjust signing/bundle identifiers as needed per configuration.
+6. Verify `flutter run --flavor yourFlavor -t lib/main.dart` launches the correct scheme.
+
+> **TODO**: future release—automate scheme/config duplication and plist wiring via `--config` data.
+
 ## Next Steps For iOS
 
 Flavor Chef ships flavor-specific plist overlays but cannot yet automate Xcode
@@ -85,6 +100,9 @@ scheme wiring. After running the tool:
 2. Duplicate the `Runner` scheme for each flavor (match the flavor key).
 3. Point each scheme to the appropriate plist overlay to set bundle identifiers.
 4. Update build configurations if you require unique signing settings.
+
+> **Future TODO**: enhance Flavor Chef to generate the Xcode schemes/configuration
+> scaffolding automatically.
 
 ## Roadmap
 
