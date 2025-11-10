@@ -1,0 +1,11 @@
+project:
+  app_name: Flavor Chef
+  android_application_id: com.example.flavorchef
+  ios_bundle_id: com.example.flavorchef
+flavors:
+  - name: development
+    android_application_id: com.example.flavorchef.dev
+    ios_bundle_id: com.example.flavorchef.dev
+    primary_color_hex: '#6750A4'
+    environment:
+      API_BASE_URL: https://dev.api.flavorchef.app
