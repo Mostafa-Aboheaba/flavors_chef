@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    // >>> FLAVOR_CHEF productFlavors
+        // >>> FLAVOR_CHEF productFlavors
     flavorDimensions += listOf("flavor")
     productFlavors {
         create("development") {
@@ -15,8 +15,15 @@ android {
             resValue("string", "app_name", "Flavor Chef Development")
         }
 
+        create("staging") {
+            dimension = "flavor"
+            applicationId = "com.example.flavorchef.stg"
+            resValue("string", "app_name", "Flavor Chef Staging")
+        }
+
     }
     // <<< FLAVOR_CHEF productFlavors
+
 
     namespace = "com.example.example"
     compileSdk = flutter.compileSdkVersion

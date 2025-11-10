@@ -7,6 +7,7 @@ class GeneratedFlavorBootstrapper {
 
   static const Map<AppFlavor, Map<String, String>> _values = {
     AppFlavor.development: <String, String>{"API_BASE_URL": "https://dev.api.flavorchef.app"},
+    AppFlavor.staging: <String, String>{"API_BASE_URL": "https://stg.api.flavorchef.app"},
   };
 
   /// Applies the provided [flavor].
