@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:flavor_chef/flavor_chef.dart';
+import 'package:flavors_chef/src/cli/flavors_chef_cli.dart';
 
 Future<void> main(List<String> arguments) async {
   final cli = FlavorChefCli(stdout: stdout, stderr: stderr, stdin: stdin);

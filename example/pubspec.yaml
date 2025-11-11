@@ -39,7 +39,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flavor_chef:
+  flavors_chef:
     path: ../
   flutter_lints: ^5.0.0
   flutter_launcher_icons: ^0.13.1
@@ -58,8 +58,8 @@ flutter:
     - assets/flavors/development/launcher.png
     - assets/flavors/staging/launcher.png
 flutter_launcher_icons:
-  android: false
-  ios: false
+  android: true
+  ios: true
   flavors:
     development:
       android: true
@@ -69,6 +69,7 @@ flutter_launcher_icons:
       android: true
       ios: true
       image_path: assets/flavors/staging/launcher.png
+  image_path: assets/flavors/development/launcher.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
@@ -100,6 +101,21 @@ flutter_launcher_icons:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

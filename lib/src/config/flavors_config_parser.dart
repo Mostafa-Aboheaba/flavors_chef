@@ -120,6 +120,8 @@ class FlavorConfigParser {
       flavorName,
     );
 
+    final launcherIconsConfig = _readLauncherIconConfig(entry, flavorName);
+
     final environment = <String, String>{};
     final envNode = entry['environment'];
     if (envNode != null) {
@@ -152,7 +154,44 @@ class FlavorConfigParser {
       iconSourcePath: iconPath,
       splashImagePath: splashPath,
       environmentValues: Map.unmodifiable(environment),
+      launcherIconConfig: launcherIconsConfig,
     );
+  }
+
+  Map<String, Object?> _readLauncherIconConfig(
+    YamlMap entry,
+    String flavorName,
+  ) {
+    final node = entry['launcher_icons'];
+    if (node == null) {
+      return const {};
+    }
+    if (node is! YamlMap) {
+      throw FormatException(
+        'launcher_icons for flavor "$flavorName" must be a map.',
+      );
+    }
+    return Map.unmodifiable(_convertYamlMap(node));
+  }
+
+  Map<String, Object?> _convertYamlMap(YamlMap map) {
+    final result = <String, Object?>{};
+    for (final entry in map.entries) {
+      result[entry.key.toString()] = _convertYamlNode(entry.value);
+    }
+    return result;
+  }
+
+  Object? _convertYamlNode(Object? node) {
+    if (node is YamlMap) {
+      return Map.unmodifiable(_convertYamlMap(node));
+    }
+    if (node is YamlList) {
+      return List<Object?>.unmodifiable(
+        node.map<Object?>((item) => _convertYamlNode(item)),
+      );
+    }
+    return node;
   }
 
   YamlMap? _asYamlMap(Object? node) {

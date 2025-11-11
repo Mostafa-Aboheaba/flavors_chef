@@ -15,6 +15,7 @@ class FlavorDefinition {
     this.splashImagePath,
     this.androidApplicationIdSuffix,
     this.versionNameSuffix,
+    this.launcherIconConfig = const {},
   });
 
   /// Machine friendly identifier (e.g. `development`).
@@ -47,6 +48,9 @@ class FlavorDefinition {
   /// Key-value environment values exposed at runtime.
   final Map<String, String> environmentValues;
 
+  /// Additional launcher icon configuration passed through to flutter_launcher_icons.
+  final Map<String, Object?> launcherIconConfig;
+
   /// Converts to a serializable map for persistence.
   Map<String, Object?> toJson() => <String, Object?>{
     'name': name,
@@ -60,6 +64,7 @@ class FlavorDefinition {
     'iconSourcePath': iconSourcePath,
     'splashImagePath': splashImagePath,
     'environmentValues': environmentValues,
+    if (launcherIconConfig.isNotEmpty) 'launcherIconConfig': launcherIconConfig,
   };
 
   /// Creates an instance from persisted JSON.
@@ -77,6 +82,9 @@ class FlavorDefinition {
       environmentValues: Map<String, String>.from(
         (json['environmentValues'] as Map<Object?, Object?>?) ?? const {},
       ),
+      launcherIconConfig: Map<String, Object?>.from(
+        (json['launcherIconConfig'] as Map<Object?, Object?>?) ?? const {},
+      ),
     );
   }
 
@@ -92,6 +100,7 @@ class FlavorDefinition {
     Object? iconSourcePath = _undefined,
     Object? splashImagePath = _undefined,
     Map<String, String>? environmentValues,
+    Map<String, Object?>? launcherIconConfig,
   }) {
     return FlavorDefinition(
       name: name ?? this.name,
@@ -109,6 +118,7 @@ class FlavorDefinition {
           ? this.splashImagePath
           : splashImagePath as String?,
       environmentValues: environmentValues ?? this.environmentValues,
+      launcherIconConfig: launcherIconConfig ?? this.launcherIconConfig,
     );
   }
 

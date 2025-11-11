@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:args/args.dart';
 import 'package:path/path.dart' as p;
 
-import '../config/flavor_config_parser.dart';
+import '../config/flavors_config_parser.dart';
 import '../models/flavor_definition.dart';
 import '../models/flavor_project_context.dart';
 import '../services/flavor_project_generator.dart';
@@ -12,7 +12,7 @@ import '../utils/flavor_defaults.dart';
 import '../utils/validation.dart';
 import 'prompter.dart';
 
-/// Entry point for the Flavor Chef interactive CLI.
+/// Entry point for the Flavors Chef interactive CLI.
 class FlavorChefCli {
   FlavorChefCli({
     required this.stdout,
@@ -78,7 +78,7 @@ class FlavorChefCli {
         );
         prompter = interactivePrompter;
 
-        stdout.writeln('🍽️  Welcome to Flavor Chef!');
+        stdout.writeln('🍽️  Welcome to Flavors Chef!');
         stdout.writeln(
           'We will guide you through configuring flavors for your Flutter app.',
         );
@@ -160,7 +160,7 @@ class FlavorChefCli {
       await generator.generate();
 
       stdout.writeln('');
-      stdout.writeln('✅ Flavor Chef finished without errors.');
+      stdout.writeln('✅ Flavors Chef finished without errors.');
       stdout.writeln('');
       return 0;
     } on FormatException catch (error) {
@@ -304,6 +304,7 @@ class FlavorChefCli {
       iconSourcePath: iconPath,
       splashImagePath: splashPath,
       environmentValues: envValues,
+      launcherIconConfig: const {},
     );
   }
 
@@ -385,7 +386,7 @@ class FlavorChefCli {
   }
 
   void _printUsage() {
-    stdout.writeln('Usage: flavor_chef [options]');
+    stdout.writeln('Usage: flavors_chef [options]');
     stdout.writeln('');
     stdout.writeln('Options:');
     stdout.writeln('  -p, --project   Path to the Flutter project.');

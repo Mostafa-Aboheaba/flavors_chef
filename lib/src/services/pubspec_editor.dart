@@ -54,16 +54,6 @@ class PubspecEditor {
         version: '^0.13.1',
       );
       yaml = loadYaml(editor.toString()) as YamlMap? ?? YamlMap();
-      _writeLauncherIconConfig(
-        editor: editor,
-        root: yaml,
-        flavors: flavors,
-        assets: assets,
-      );
-      yaml = loadYaml(editor.toString()) as YamlMap? ?? YamlMap();
-    } else {
-      _removeLauncherIconConfig(editor);
-      yaml = loadYaml(editor.toString()) as YamlMap? ?? YamlMap();
     }
 
     if (hasSplashAssets) {
@@ -141,42 +131,6 @@ class PubspecEditor {
     editor.update(assetsPath, set.toList()..sort());
   }
 
-  void _writeLauncherIconConfig({
-    required YamlEditor editor,
-    required YamlMap root,
-    required List<FlavorDefinition> flavors,
-    required Map<String, FlavorAssetBundle> assets,
-  }) {
-    final path = ['flutter_launcher_icons'];
-    final node = root.nodes['flutter_launcher_icons'];
-    Map<String, Object?> baseConfig;
-    if (node is YamlMap) {
-      baseConfig = Map<String, Object?>.from(node.value);
-    } else {
-      baseConfig = <String, Object?>{'android': false, 'ios': false};
-    }
-
-    final flavorConfigs = <String, Object?>{};
-    for (final flavor in flavors) {
-      final bundle = assets[flavor.name];
-      final iconPath = bundle?.iconAssetPath;
-      if (iconPath == null) {
-        continue;
-      }
-      flavorConfigs[flavor.name] = {
-        'android': true,
-        'ios': true,
-        'image_path': iconPath.replaceAll(r'\', '/'),
-      };
-    }
-    if (flavorConfigs.isEmpty) {
-      _removeLauncherIconConfig(editor);
-      return;
-    }
-    baseConfig['flavors'] = flavorConfigs;
-    editor.update(path, baseConfig);
-  }
-
   void _writeSplashConfig({
     required YamlEditor editor,
     required YamlMap root,
@@ -214,14 +168,6 @@ class PubspecEditor {
     }
     baseConfig['flavors'] = flavorConfigs;
     editor.update(path, baseConfig);
-  }
-
-  void _removeLauncherIconConfig(YamlEditor editor) {
-    try {
-      editor.remove(['flutter_launcher_icons']);
-    } catch (_) {
-      // Ignore if the key does not exist; nothing to remove.
-    }
   }
 
   void _removeSplashConfig(YamlEditor editor) {

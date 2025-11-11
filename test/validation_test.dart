@@ -1,4 +1,4 @@
-import 'package:flavor_chef/src/utils/validation.dart';
+import 'package:flavors_chef/src/utils/validation.dart';
 import 'package:test/test.dart';
 
 void main() {

@@ -1,0 +1,9 @@
+{
+  "flutter_launcher_icons": {
+    "image_path": "assets/flavors/development/launcher.png",
+    "android": true,
+    "ios": true,
+    "remove_alpha_ios": true,
+    "flavor": "development"
+  }
+}

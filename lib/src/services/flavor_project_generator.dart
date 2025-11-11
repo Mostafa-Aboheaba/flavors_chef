@@ -6,6 +6,7 @@ import 'android_configurator.dart';
 import 'assets_pipeline.dart';
 import 'dart_generator.dart';
 import 'ios_configurator.dart';
+import 'launcher_icon_runner.dart';
 import 'pubspec_editor.dart';
 
 /// Coordinates all generation steps required to flavorize a project.
@@ -37,13 +38,19 @@ class FlavorProjectGenerator {
       stdout: stdout,
     ).apply(flavors: flavors, assets: assets);
 
-    stdout.writeln('Step 3/5 • Configuring Android');
+    stdout.writeln('Step 3/6 • Generating launcher icons');
+    await LauncherIconRunner(
+      context: context,
+      stdout: stdout,
+    ).run(flavors: flavors, assets: assets);
+
+    stdout.writeln('Step 4/6 • Configuring Android');
     await AndroidConfigurator(context: context, stdout: stdout).apply(flavors);
 
-    stdout.writeln('Step 4/5 • Configuring iOS');
+    stdout.writeln('Step 5/6 • Configuring iOS');
     await IosConfigurator(context: context, stdout: stdout).apply(flavors);
 
-    stdout.writeln('Step 5/5 • Generating Dart bootstrap files');
+    stdout.writeln('Step 6/6 • Generating Dart bootstrap files');
     await DartGenerator(context: context, stdout: stdout).generate(flavors);
   }
 }
