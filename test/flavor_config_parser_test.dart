@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:path/path.dart' as p;
 import 'package:test/test.dart';
 
-import 'package:flavors_chef/src/config/flavor_config_parser.dart';
+import 'package:flavors_chef/src/config/flavors_config_parser.dart';
 import 'package:flavors_chef/src/services/project_inspector.dart';
 
 void main() {

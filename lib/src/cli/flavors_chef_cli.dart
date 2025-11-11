@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:args/args.dart';
 import 'package:path/path.dart' as p;
 
-import '../config/flavor_config_parser.dart';
+import '../config/flavors_config_parser.dart';
 import '../models/flavor_definition.dart';
 import '../models/flavor_project_context.dart';
 import '../services/flavor_project_generator.dart';
@@ -386,7 +386,7 @@ class FlavorChefCli {
   }
 
   void _printUsage() {
-    stdout.writeln('Usage: flavor_chef [options]');
+    stdout.writeln('Usage: flavors_chef [options]');
     stdout.writeln('');
     stdout.writeln('Options:');
     stdout.writeln('  -p, --project   Path to the Flutter project.');

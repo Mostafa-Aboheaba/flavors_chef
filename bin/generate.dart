@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:flavors_chef/flavor_chef.dart';
+import 'package:flavors_chef/flavors_chef.dart';
 
 Future<void> main(List<String> arguments) async {
   final cli = FlavorChefCli(stdout: stdout, stderr: stderr, stdin: stdin);
@@ -18,7 +18,7 @@ Future<void> main(List<String> arguments) async {
 
   final effectiveArgs = <String>[
     if (!hasProjectArg) ...['--project', '.'],
-    if (!hasConfigArg) ...['--config', 'flavor_chef.yaml'],
+    if (!hasConfigArg) ...['--config', 'flavors_chef.yaml'],
     ...arguments,
   ];
 

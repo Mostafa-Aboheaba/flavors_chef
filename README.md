@@ -20,13 +20,13 @@ configurations, and generates type-safe Dart helpers for runtime access.
 dart pub global activate --source path .
 ```
 
-Alternatively, add `flavor_chef` as a dev dependency and run it with
-`dart run flavor_chef`.
+Alternatively, add `flavors_chef` as a dev dependency and run it with
+`dart run flavors_chef`.
 
 ## Usage
 
 ```
-flavor_chef --project <path-to-flutter-project>
+flavors_chef --project <path-to-flutter-project>
 ```
 
 Follow the prompts to describe each flavor:
@@ -52,7 +52,7 @@ After confirmation, Flavors Chef:
 Skip the interactive wizard by supplying a YAML file:
 
 ```
-flavor_chef --project <path> --config flavor_chef.yaml
+flavors_chef --project <path> --config flavors_chef.yaml
 ```
 
 Example structure:
