@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:path/path.dart' as p;
 import 'package:test/test.dart';
 
-import 'package:flavor_chef/src/config/flavor_config_parser.dart';
-import 'package:flavor_chef/src/services/project_inspector.dart';
+import 'package:flavors_chef/src/config/flavor_config_parser.dart';
+import 'package:flavors_chef/src/services/project_inspector.dart';
 
 void main() {
   group('FlavorConfigParser', () {
@@ -77,6 +77,7 @@ flavors:
         p.join(tempDir.path, 'assets', 'dev_icon.png'),
       );
       expect(flavor.environmentValues['API_URL'], 'https://dev.example.com');
+      expect(flavor.launcherIconConfig, isEmpty);
     });
 
     test('throws when flavors list is missing', () {

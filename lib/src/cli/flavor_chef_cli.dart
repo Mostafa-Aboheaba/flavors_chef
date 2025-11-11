@@ -12,7 +12,7 @@ import '../utils/flavor_defaults.dart';
 import '../utils/validation.dart';
 import 'prompter.dart';
 
-/// Entry point for the Flavor Chef interactive CLI.
+/// Entry point for the Flavors Chef interactive CLI.
 class FlavorChefCli {
   FlavorChefCli({
     required this.stdout,
@@ -78,7 +78,7 @@ class FlavorChefCli {
         );
         prompter = interactivePrompter;
 
-        stdout.writeln('🍽️  Welcome to Flavor Chef!');
+        stdout.writeln('🍽️  Welcome to Flavors Chef!');
         stdout.writeln(
           'We will guide you through configuring flavors for your Flutter app.',
         );
@@ -160,7 +160,7 @@ class FlavorChefCli {
       await generator.generate();
 
       stdout.writeln('');
-      stdout.writeln('✅ Flavor Chef finished without errors.');
+      stdout.writeln('✅ Flavors Chef finished without errors.');
       stdout.writeln('');
       return 0;
     } on FormatException catch (error) {
@@ -304,6 +304,7 @@ class FlavorChefCli {
       iconSourcePath: iconPath,
       splashImagePath: splashPath,
       environmentValues: envValues,
+      launcherIconConfig: const {},
     );
   }
 
