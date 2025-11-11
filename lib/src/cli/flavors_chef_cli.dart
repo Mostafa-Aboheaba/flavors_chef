@@ -305,6 +305,7 @@ class FlavorChefCli {
       splashImagePath: splashPath,
       environmentValues: envValues,
       launcherIconConfig: const {},
+      nativeSplashConfig: const {},
     );
   }
 

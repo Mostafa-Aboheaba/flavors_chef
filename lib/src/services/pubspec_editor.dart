@@ -32,6 +32,9 @@ class PubspecEditor {
     final hasSplashAssets = flavors.any(
       (flavor) => assets[flavor.name]?.hasSplash ?? false,
     );
+    final hasNativeSplashConfig = flavors.any(
+      (flavor) => flavor.nativeSplashConfig.isNotEmpty,
+    );
 
     final assetPaths =
         assets.values
@@ -56,7 +59,7 @@ class PubspecEditor {
       yaml = loadYaml(editor.toString()) as YamlMap? ?? YamlMap();
     }
 
-    if (hasSplashAssets) {
+    if (hasSplashAssets || hasNativeSplashConfig) {
       _ensureDevDependency(
         editor: editor,
         root: yaml,
@@ -64,17 +67,10 @@ class PubspecEditor {
         version: '^2.4.0',
       );
       yaml = loadYaml(editor.toString()) as YamlMap? ?? YamlMap();
-      _writeSplashConfig(
-        editor: editor,
-        root: yaml,
-        flavors: flavors,
-        assets: assets,
-      );
-      yaml = loadYaml(editor.toString()) as YamlMap? ?? YamlMap();
-    } else {
-      _removeSplashConfig(editor);
-      yaml = loadYaml(editor.toString()) as YamlMap? ?? YamlMap();
     }
+
+    _removeSplashConfig(editor);
+    yaml = loadYaml(editor.toString()) as YamlMap? ?? YamlMap();
 
     final updated = editor.toString();
     await file.writeAsString('$updated\n');
@@ -129,45 +125,6 @@ class PubspecEditor {
       ..addAll(assets);
 
     editor.update(assetsPath, set.toList()..sort());
-  }
-
-  void _writeSplashConfig({
-    required YamlEditor editor,
-    required YamlMap root,
-    required List<FlavorDefinition> flavors,
-    required Map<String, FlavorAssetBundle> assets,
-  }) {
-    final path = ['flutter_native_splash'];
-    final node = root.nodes['flutter_native_splash'];
-    Map<String, Object?> baseConfig;
-    if (node is YamlMap) {
-      baseConfig = Map<String, Object?>.from(node.value);
-    } else {
-      baseConfig = <String, Object?>{'android': true, 'ios': true};
-    }
-
-    final flavorConfigs = <String, Object?>{};
-    for (final flavor in flavors) {
-      final bundle = assets[flavor.name];
-      final splashPath = bundle?.splashAssetPath;
-      if (splashPath == null) {
-        continue;
-      }
-      flavorConfigs[flavor.name] = {
-        'color': flavor.primaryColorHex,
-        'android_12': {
-          'color': flavor.primaryColorHex,
-          'image': splashPath.replaceAll(r'\', '/'),
-        },
-        'image': splashPath.replaceAll(r'\', '/'),
-      };
-    }
-    if (flavorConfigs.isEmpty) {
-      _removeSplashConfig(editor);
-      return;
-    }
-    baseConfig['flavors'] = flavorConfigs;
-    editor.update(path, baseConfig);
   }
 
   void _removeSplashConfig(YamlEditor editor) {

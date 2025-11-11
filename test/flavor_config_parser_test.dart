@@ -51,6 +51,13 @@ flavors:
     primary_color_hex: '#112233'
     icon_source_path: assets/dev_icon.png
     splash_image_path: assets/dev_splash.png
+    launcher_icons:
+      android: true
+      adaptive_icon_foreground: assets/dev_icon_fg.png
+    native_splash:
+      color: '#123456'
+      android_12:
+        image: assets/dev_splash_android12.png
     version_name_suffix: '-dev'
     environment:
       API_URL: https://dev.example.com
@@ -77,7 +84,16 @@ flavors:
         p.join(tempDir.path, 'assets', 'dev_icon.png'),
       );
       expect(flavor.environmentValues['API_URL'], 'https://dev.example.com');
-      expect(flavor.launcherIconConfig, isEmpty);
+      expect(flavor.launcherIconConfig, containsPair('android', true));
+      expect(
+        flavor.launcherIconConfig['adaptive_icon_foreground'],
+        'assets/dev_icon_fg.png',
+      );
+      expect(flavor.nativeSplashConfig, containsPair('color', '#123456'));
+      expect(
+        (flavor.nativeSplashConfig['android_12'] as Map)['image'],
+        'assets/dev_splash_android12.png',
+      );
     });
 
     test('throws when flavors list is missing', () {
