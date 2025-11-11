@@ -1,5 +1,10 @@
 # Flavors Chef
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/flavors_chef_banner_dark.png">
+  <img src="assets/flavors_chef_banner.png" alt="Flavors Chef banner">
+</picture>
+
 Flavors Chef is an interactive command‑line assistant that automates common
 Flutter flavor setup tasks. The tool guides you through collecting flavor
 metadata, updates Android and iOS scaffolding, prepares launcher icon and splash
