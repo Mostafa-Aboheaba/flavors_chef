@@ -4,8 +4,8 @@
 <plist version="1.0">
 <dict>
   <key>PRODUCT_BUNDLE_IDENTIFIER</key>
-  <string>com.example.example.dev</string>
+  <string>com.example.flavorchef.stg</string>
   <key>PRODUCT_NAME</key>
-  <string>A New Flutter Project. Dev</string>
+  <string>Flavor Chef Staging</string>
 </dict>
 </plist>

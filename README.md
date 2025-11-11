@@ -15,6 +15,7 @@ configurations, and generates type-safe Dart helpers for runtime access.
 - Collect multiple flavor definitions via an interactive wizard.
 - Copy launcher icon and splash assets into organized flavor-specific folders.
 - Configure `flutter_launcher_icons` and `flutter_native_splash`, generating per-flavor launcher icon and splash YAML files.
+- Generate a documented `flavors_chef.yaml` you can uncomment and adapt.
 - Scaffold Android product flavors and per-flavor resources.
 - Generate reusable Dart helpers (`AppFlavor`, `FlavorConfig`, bootstrapper).
 - Produce per-flavor Info.plist overlays for iOS (final scheme wiring required).
@@ -45,12 +46,13 @@ Follow the prompts to describe each flavor:
 
 After confirmation, Flavors Chef:
 
-1. Copies assets into `assets/flavors/<flavor>/`.
-2. Updates `pubspec.yaml` with flavor-aware icon and splash configuration.
-3. Configures Android product flavors with manifests and resource overrides.
-4. Writes `flutter_launcher_icons-<flavor>.yaml` and `flutter_native_splash-<flavor>.yaml` files reflecting your flavor configuration and invokes the generators.
-5. Emits iOS plist overlays (import into Xcode schemes).
-6. Generates `lib/flavors/` helpers for runtime access.
+1. Writes a commented `flavors_chef.template.yaml` if one does not already exist.
+2. Copies assets into `assets/flavors/<flavor>/`.
+3. Updates `pubspec.yaml` with flavor-aware icon and splash configuration.
+4. Configures Android product flavors with manifests and resource overrides.
+5. Writes `flutter_launcher_icons-<flavor>.yaml` and `flutter_native_splash-<flavor>.yaml` files reflecting your flavor configuration and invokes the generators.
+6. Emits iOS plist overlays (import into Xcode schemes).
+7. Generates `lib/flavors/` helpers for runtime access.
 
 ### Configuration-Driven Runs
 
@@ -59,6 +61,18 @@ Skip the interactive wizard by supplying a YAML file:
 ```
 flavors_chef --project <path> --config flavors_chef.yaml
 ```
+
+### Quick Start Template
+
+Create a documented template without running the full generator:
+
+```
+dart run flavors_chef:init --project <path-to-flutter-project>
+```
+
+This writes `flavors_chef.yaml` into the target directory (optionally
+overwriting an existing file) so you can uncomment the sections you need and
+start from a well-documented baseline immediately.
 
 Example structure:
 
@@ -95,6 +109,8 @@ Every field accepted in the wizard can be provided in the file (including option
 When `launcher_icons` is present, Flavors Chef merges those attributes with sensible defaults (`image_path`, platform toggles, `remove_alpha_ios`) and writes dedicated `flutter_launcher_icons-<flavor>.yaml` files before invoking the generator. Omit the section to keep the default behavior of using `icon_source_path` alone.
 
 Similarly, the `native_splash` section is merged with defaults (`android`, `ios`, `color`, Android 12 fallbacks, and the copied `splash_image_path` when available) before producing `flutter_native_splash-<flavor>.yaml`. Exclude the section to rely on the basic color/image defaults derived from your flavor metadata.
+
+> **Tip:** Running `dart run flavors_chef:init` writes a fully documented `flavors_chef.yaml`. Edit that file directly—uncomment, add, or remove flavors as needed, then apply it with `flavors_chef --config flavors_chef.yaml`.
 
 ### Manual iOS Finishing Steps
 

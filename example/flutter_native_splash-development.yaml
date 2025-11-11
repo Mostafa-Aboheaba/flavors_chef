@@ -2,11 +2,14 @@
   "flutter_native_splash": {
     "android": true,
     "ios": true,
-    "android_12": {
-      "image": "assets/flavors/development/splash.png"
-    },
-    "image_dark": "assets/flavors/development/splash_dark.png",
     "color": "#6750A4",
-    "color_dark": "#201A2C"
+    "color_dark": "#201A2C",
+    "image": "assets/flavors/development/splash.png",
+    "image_dark": "assets/flavors/development/splash_dark.png",
+    "android_12": {
+      "image": "assets/flavors/development/splash.png",
+      "color": "#6750A4",
+      "icon_background_color": "#6750A4"
+    }
   }
 }
