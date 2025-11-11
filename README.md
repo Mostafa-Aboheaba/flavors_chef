@@ -87,9 +87,9 @@ flavors:
 
 Every field accepted in the wizard can be provided in the file (including optional suffixes, environment variables, and the `launcher_icons` / `native_splash` maps for any [`flutter_launcher_icons`](https://pub.dev/packages/flutter_launcher_icons) or [`flutter_native_splash`](https://pub.dev/packages/flutter_native_splash) overrides). Relative asset paths are resolved from the project root.
 
-When `launcher_icons` is present, Flavors Chef merges those attributes with sensible defaults (`image_path`, platform toggles, `remove_alpha_ios`, `flavor`) and writes dedicated `flutter_launcher_icons-<flavor>.yaml` files before invoking the generator. Omit the section to keep the default behavior of using `icon_source_path` alone.
+When `launcher_icons` is present, Flavors Chef merges those attributes with sensible defaults (`image_path`, platform toggles, `remove_alpha_ios`) and writes dedicated `flutter_launcher_icons-<flavor>.yaml` files before invoking the generator. Omit the section to keep the default behavior of using `icon_source_path` alone.
 
-Similarly, the `native_splash` section is merged with defaults (`android`, `ios`, `flavor`, `color`, Android 12 fallbacks, and the copied `splash_image_path` when available) before producing `flutter_native_splash-<flavor>.yaml`. Exclude the section to rely on the basic color/image defaults derived from your flavor metadata.
+Similarly, the `native_splash` section is merged with defaults (`android`, `ios`, `color`, Android 12 fallbacks, and the copied `splash_image_path` when available) before producing `flutter_native_splash-<flavor>.yaml`. Exclude the section to rely on the basic color/image defaults derived from your flavor metadata.
 
 ### Manual iOS Finishing Steps
 

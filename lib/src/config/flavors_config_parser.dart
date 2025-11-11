@@ -180,7 +180,9 @@ class FlavorConfigParser {
     YamlMap entry,
     String flavorName,
   ) {
-    final node = entry['native_splash'];
+    final node = entry.containsKey('native_splash')
+        ? entry['native_splash']
+        : entry['native_splash_config'];
     if (node == null) {
       return const {};
     }

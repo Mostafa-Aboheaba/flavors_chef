@@ -8,12 +8,20 @@ flavors:
     ios_bundle_id: com.example.flavorchef.dev
     icon_source_path: assets/flavors/development/logo.png
     primary_color_hex: '#6750A4'
+    native_splash_config:
+      android: true
+      ios: true
+      android_12:
+        image: assets/flavors/development/splash.png
+      image_dark: assets/flavors/development/splash_dark.png
+      color: '#6750A4'
+      color_dark: '#201A2C'
     environment:
       API_BASE_URL: https://dev.api.flavorchef.app
-  - name: staging
-    android_application_id: com.example.flavorchef.stg
-    ios_bundle_id: com.example.flavorchef.stg
-    primary_color_hex: '#6750A6'
-    icon_source_path: assets/flavors/staging/logo.png
-    environment:
-      API_BASE_URL: https://stg.api.flavorchef.app
+  # - name: staging
+  #   android_application_id: com.example.flavorchef.stg
+  #   ios_bundle_id: com.example.flavorchef.stg
+  #   primary_color_hex: '#6750A6'
+  #   icon_source_path: assets/flavors/staging/logo.png
+  #   environment:
+  #     API_BASE_URL: https://stg.api.flavorchef.app

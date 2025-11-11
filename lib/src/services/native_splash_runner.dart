@@ -120,7 +120,6 @@ class NativeSplashRunner {
 
     config.putIfAbsent('android', () => true);
     config.putIfAbsent('ios', () => true);
-    config.putIfAbsent('flavor', () => flavor.name);
     config.putIfAbsent('color', () => flavor.primaryColorHex);
 
     final splashPath = bundle?.splashAssetPath;
