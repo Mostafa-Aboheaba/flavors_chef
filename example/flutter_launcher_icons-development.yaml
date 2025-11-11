@@ -1,16 +1,9 @@
 {
   "flutter_launcher_icons": {
+    "image_path": "assets/flavors/development/launcher.png",
     "android": true,
-    "adaptive_icon_background": "#6750A4",
-    "adaptive_icon_foreground": "assets/flavors/development/launcher.png",
-    "adaptive_icon_monochrome": "assets/flavors/development/launcher.png",
     "ios": true,
     "remove_alpha_ios": true,
-    "image_path_ios_dark_transparent": "assets/flavors/development/launcher.png",
-    "image_path_ios_tinted_grayscale": "assets/flavors/development/launcher.png",
-    "desaturate_tinted_to_grayscale_ios": true,
-    "background_color_ios": "#6750A4",
-    "image_path": "assets/flavors/development/launcher.png",
     "flavor": "development"
   }
 }

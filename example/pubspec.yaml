@@ -39,7 +39,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flavor_chef:
+  flavors_chef:
     path: ../
   flutter_lints: ^5.0.0
   flutter_launcher_icons: ^0.13.1
@@ -101,6 +101,8 @@ flutter_launcher_icons:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+
+
 
 
 
