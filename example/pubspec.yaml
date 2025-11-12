@@ -43,6 +43,7 @@ dev_dependencies:
     path: ../
   flutter_lints: ^5.0.0
   flutter_launcher_icons: ^0.13.1
+  flutter_native_splash: ^2.4.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -56,6 +57,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/flavors/development/launcher.png
+    - assets/flavors/development/splash.png
     - assets/flavors/staging/launcher.png
 flutter_launcher_icons:
   android: true
@@ -101,6 +103,18 @@ flutter_launcher_icons:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

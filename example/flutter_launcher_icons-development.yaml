@@ -1,8 +1,9 @@
 {
   "flutter_launcher_icons": {
-    "image_path": "assets/flavors/development/launcher.png",
     "android": true,
     "ios": true,
+    "adaptive_icon_background": "#FFFFFF",
+    "image_path": "assets/flavors/development/launcher.png",
     "remove_alpha_ios": true,
     "flavor": "development"
   }

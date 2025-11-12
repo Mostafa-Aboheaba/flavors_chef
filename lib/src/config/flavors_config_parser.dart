@@ -121,6 +121,7 @@ class FlavorConfigParser {
     );
 
     final launcherIconsConfig = _readLauncherIconConfig(entry, flavorName);
+    final nativeSplashConfig = _readNativeSplashConfig(entry, flavorName);
 
     final environment = <String, String>{};
     final envNode = entry['environment'];
@@ -155,6 +156,7 @@ class FlavorConfigParser {
       splashImagePath: splashPath,
       environmentValues: Map.unmodifiable(environment),
       launcherIconConfig: launcherIconsConfig,
+      nativeSplashConfig: nativeSplashConfig,
     );
   }
 
@@ -169,6 +171,24 @@ class FlavorConfigParser {
     if (node is! YamlMap) {
       throw FormatException(
         'launcher_icons for flavor "$flavorName" must be a map.',
+      );
+    }
+    return Map.unmodifiable(_convertYamlMap(node));
+  }
+
+  Map<String, Object?> _readNativeSplashConfig(
+    YamlMap entry,
+    String flavorName,
+  ) {
+    final node = entry.containsKey('native_splash')
+        ? entry['native_splash']
+        : entry['native_splash_config'];
+    if (node == null) {
+      return const {};
+    }
+    if (node is! YamlMap) {
+      throw FormatException(
+        'native_splash for flavor "$flavorName" must be a map.',
       );
     }
     return Map.unmodifiable(_convertYamlMap(node));
