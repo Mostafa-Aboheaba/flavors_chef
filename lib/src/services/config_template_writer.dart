@@ -9,19 +9,6 @@ class ConfigTemplateWriter {
   final FlavorProjectContext context;
   final Stdout stdout;
 
-  /// Creates `flavors_chef.template.yaml` if it does not already exist.
-  Future<void> writeTemplate() async {
-    final file = File(context.resolvePath('flavors_chef.template.yaml'));
-    if (file.existsSync()) {
-      stdout.writeln(
-        '  • Found existing flavors_chef.template.yaml; skipping template generation.',
-      );
-      return;
-    }
-    await file.writeAsString(_buildTemplate());
-    stdout.writeln('  • Generated flavors_chef.template.yaml');
-  }
-
   /// Writes `flavors_chef.yaml`, overwriting any existing file.
   Future<void> writeConfig() async {
     final file = File(context.resolvePath('flavors_chef.yaml'));

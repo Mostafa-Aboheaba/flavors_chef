@@ -6,6 +6,6 @@ enum AppFlavor {
 extension AppFlavorDisplayName on AppFlavor {
   /// Human friendly label for the flavor.
   String get label => switch (this) {
-      AppFlavor.development => 'A New Flutter Project. Dev',
+      AppFlavor.development => 'Flavors Chef Development# Optional override shown on device home screens.',
   };
 }
