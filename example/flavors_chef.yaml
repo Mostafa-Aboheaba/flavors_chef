@@ -26,7 +26,7 @@ flavors:
   # Development flavor
   # ---------------------------------------------------------------------------
   - name: development
-    app_name: A New Flutter Project. Dev # Optional override shown on device home screens.
+    app_name: Flavors Chef Development# Optional override shown on device home screens.
     android_application_id: com.example.example.dev # Unique package name per flavor.
     ios_bundle_id: com.example.example.dev # Unique bundle id per flavor.
     primary_color_hex: '#6750A4' # Seed color used for splash + theming defaults.
@@ -43,8 +43,6 @@ flavors:
       color_dark: '#201A2C'
       image: assets/flavors/development/splash.png
       image_dark: assets/flavors/development/splash_dark.png
-      android_12:
-        image: assets/flavors/development/splash.png
     environment:
       API_BASE_URL: https://dev.api.flavorchef.app
       LOG_LEVEL: debug

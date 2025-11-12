@@ -46,13 +46,12 @@ Follow the prompts to describe each flavor:
 
 After confirmation, Flavors Chef:
 
-1. Writes a commented `flavors_chef.template.yaml` if one does not already exist.
-2. Copies assets into `assets/flavors/<flavor>/`.
-3. Updates `pubspec.yaml` with flavor-aware icon and splash configuration.
+1. Copies assets into `assets/flavors/<flavor>/`.
+2. Updates `pubspec.yaml` with flavor-aware icon and splash configuration.
+3. Writes `flutter_launcher_icons-<flavor>.yaml` and `flutter_native_splash-<flavor>.yaml` files reflecting your flavor configuration and invokes the generators.
 4. Configures Android product flavors with manifests and resource overrides.
-5. Writes `flutter_launcher_icons-<flavor>.yaml` and `flutter_native_splash-<flavor>.yaml` files reflecting your flavor configuration and invokes the generators.
-6. Emits iOS plist overlays (import into Xcode schemes).
-7. Generates `lib/flavors/` helpers for runtime access.
+5. Emits iOS plist overlays (import into Xcode schemes).
+6. Generates `lib/flavors/` helpers for runtime access.
 
 ### Configuration-Driven Runs
 

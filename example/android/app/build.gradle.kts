@@ -6,17 +6,18 @@ plugins {
 }
 
 android {
-                // >>> FLAVOR_CHEF productFlavors
+                    // >>> FLAVOR_CHEF productFlavors
     flavorDimensions += listOf("flavor")
     productFlavors {
         create("development") {
             dimension = "flavor"
             applicationId = "com.example.example.dev"
-            resValue("string", "app_name", "A New Flutter Project. Dev")
+            resValue("string", "app_name", "Flavors Chef Development# Optional override shown on device home screens.")
         }
 
     }
     // <<< FLAVOR_CHEF productFlavors
+
 
 
 
