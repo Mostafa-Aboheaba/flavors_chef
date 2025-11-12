@@ -1,7 +1,7 @@
 name: flavors_chef
 description: "Interactive CLI toolkit for setting up Flutter project flavors."
 version: 0.1.0
-homepage:
+repository: https://github.com/Mostafa-Aboheaba/flavors_chef
 
 environment:
   sdk: ^3.8.1
