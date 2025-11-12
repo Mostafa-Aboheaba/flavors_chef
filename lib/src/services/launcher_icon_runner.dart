@@ -114,9 +114,9 @@ class LauncherIconRunner {
     config.putIfAbsent('remove_alpha_ios', () => true);
     config.putIfAbsent('flavor', () => flavorName);
 
-    final encoded = const JsonEncoder.withIndent('  ').convert({
-      'flutter_launcher_icons': config,
-    });
+    final encoded = const JsonEncoder.withIndent(
+      '  ',
+    ).convert({'flutter_launcher_icons': config});
     await configFile.writeAsString('$encoded\n');
     return configFile;
   }

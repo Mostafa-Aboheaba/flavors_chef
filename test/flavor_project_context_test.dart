@@ -91,9 +91,11 @@ void main() {
         );
 
         final resolved = context.resolvePath('./assets/icon.png');
-        expect(resolved, equals(p.normalize(p.join(tempDir.path, 'assets', 'icon.png'))));
+        expect(
+          resolved,
+          equals(p.normalize(p.join(tempDir.path, 'assets', 'icon.png'))),
+        );
       });
     });
   });
 }
-

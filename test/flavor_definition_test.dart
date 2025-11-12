@@ -20,7 +20,10 @@ void main() {
       expect(json['androidApplicationId'], equals('com.example.dev'));
       expect(json['iosBundleId'], equals('com.example.dev'));
       expect(json['primaryColorHex'], equals('#123456'));
-      expect(json['environmentValues'], equals({'API_URL': 'https://dev.example.com'}));
+      expect(
+        json['environmentValues'],
+        equals({'API_URL': 'https://dev.example.com'}),
+      );
       expect(json['iconSourcePath'], isNull);
       expect(json['splashImagePath'], isNull);
       expect(json.containsKey('androidApplicationIdSuffix'), isFalse);
@@ -80,7 +83,10 @@ void main() {
       expect(definition.splashImagePath, equals('/path/to/splash.png'));
       expect(definition.androidApplicationIdSuffix, equals('.dev'));
       expect(definition.versionNameSuffix, equals('-dev'));
-      expect(definition.environmentValues, equals({'API_URL': 'https://dev.example.com'}));
+      expect(
+        definition.environmentValues,
+        equals({'API_URL': 'https://dev.example.com'}),
+      );
       expect(definition.launcherIconConfig, equals({'android': true}));
       expect(definition.nativeSplashConfig, equals({'color': '#123456'}));
     });
@@ -196,4 +202,3 @@ void main() {
     });
   });
 }
-

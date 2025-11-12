@@ -54,10 +54,7 @@ void main() {
 
     test('trims whitespace from base', () {
       expect(
-        defaultAndroidApplicationId(
-          base: '  com.example  ',
-          flavorName: 'dev',
-        ),
+        defaultAndroidApplicationId(base: '  com.example  ', flavorName: 'dev'),
         equals('com.example.dev'),
       );
     });
@@ -83,10 +80,7 @@ void main() {
     });
 
     test('handles empty base', () {
-      expect(
-        defaultIosBundleId(base: '', flavorName: 'dev'),
-        equals('dev'),
-      );
+      expect(defaultIosBundleId(base: '', flavorName: 'dev'), equals('dev'));
       expect(
         defaultIosBundleId(base: '   ', flavorName: 'staging'),
         equals('staging'),
@@ -118,40 +112,28 @@ void main() {
         equals('My App Development'),
       );
       expect(
-        defaultFlavorDisplayName(
-          baseAppName: 'My App',
-          flavorName: 'qa_stage',
-        ),
+        defaultFlavorDisplayName(baseAppName: 'My App', flavorName: 'qa_stage'),
         equals('My App Qa Stage'),
       );
     });
 
     test('handles single word flavor names', () {
       expect(
-        defaultFlavorDisplayName(
-          baseAppName: 'My App',
-          flavorName: 'dev',
-        ),
+        defaultFlavorDisplayName(baseAppName: 'My App', flavorName: 'dev'),
         equals('My App Dev'),
       );
     });
 
     test('handles empty flavor name', () {
       expect(
-        defaultFlavorDisplayName(
-          baseAppName: 'My App',
-          flavorName: '',
-        ),
+        defaultFlavorDisplayName(baseAppName: 'My App', flavorName: ''),
         equals('My App'),
       );
     });
 
     test('handles whitespace-only flavor name', () {
       expect(
-        defaultFlavorDisplayName(
-          baseAppName: 'My App',
-          flavorName: '   ',
-        ),
+        defaultFlavorDisplayName(baseAppName: 'My App', flavorName: '   '),
         equals('My App'),
       );
     });
@@ -177,4 +159,3 @@ void main() {
     });
   });
 }
-

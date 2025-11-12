@@ -23,11 +23,13 @@ void main() {
 
       expect(
         () => inspector.inspect(),
-        throwsA(isA<StateError>().having(
-          (e) => e.message,
-          'message',
-          contains('No pubspec.yaml'),
-        )),
+        throwsA(
+          isA<StateError>().having(
+            (e) => e.message,
+            'message',
+            contains('No pubspec.yaml'),
+          ),
+        ),
       );
     });
 
@@ -127,7 +129,6 @@ description: my-test-application
 
       expect(metadata.androidApplicationId, 'com.custom.app');
     });
-
 
     test('falls back to default when Android files are missing', () async {
       final pubspecFile = File(p.join(tempDir.path, 'pubspec.yaml'));
@@ -245,9 +246,7 @@ android {
 </plist>
 ''');
 
-      final pbxDir = Directory(
-        p.join(tempDir.path, 'ios', 'Runner.xcodeproj'),
-      );
+      final pbxDir = Directory(p.join(tempDir.path, 'ios', 'Runner.xcodeproj'));
       pbxDir.createSync(recursive: true);
       final pbxFile = File(p.join(pbxDir.path, 'project.pbxproj'));
       pbxFile.writeAsStringSync('''
@@ -275,10 +274,7 @@ PRODUCT_BUNDLE_IDENTIFIER = com.pbx.app;
       final relativeDir = Directory('relative');
       final inspector = ProjectInspector(projectRoot: relativeDir);
 
-      expect(
-        p.isAbsolute(inspector.projectRoot.path),
-        isTrue,
-      );
+      expect(p.isAbsolute(inspector.projectRoot.path), isTrue);
     });
 
     test('handles multi-line description', () async {
@@ -297,4 +293,3 @@ description: |
     });
   });
 }
-

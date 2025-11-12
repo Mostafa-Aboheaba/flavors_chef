@@ -4,10 +4,8 @@ import 'app_flavor.dart';
 
 /// Holds runtime configuration for the selected flavor.
 class FlavorConfig {
-  FlavorConfig._({
-    required this.flavor,
-    required Map<String, String> values,
-  }) : values = Map.unmodifiable(values);
+  FlavorConfig._({required this.flavor, required Map<String, String> values})
+    : values = Map.unmodifiable(values);
 
   static FlavorConfig? _instance;
 
@@ -15,9 +13,7 @@ class FlavorConfig {
   static FlavorConfig get instance {
     final config = _instance;
     if (config == null) {
-      throw StateError(
-        'FlavorConfig.initialize must be called before access.',
-      );
+      throw StateError('FlavorConfig.initialize must be called before access.');
     }
     return config;
   }
@@ -27,10 +23,7 @@ class FlavorConfig {
     required AppFlavor flavor,
     required Map<String, String> values,
   }) {
-    _instance = FlavorConfig._(
-      flavor: flavor,
-      values: values,
-    );
+    _instance = FlavorConfig._(flavor: flavor, values: values);
   }
 
   /// Selected application flavor.
