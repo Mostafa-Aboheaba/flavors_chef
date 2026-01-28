@@ -23,11 +23,17 @@ configurations, and generates type-safe Dart helpers for runtime access.
 ## Installation
 
 ```
-dart pub global activate --source path .
+dart pub global activate flavors_chef
 ```
 
-Alternatively, add `flavors_chef` as a dev dependency and run it with
-`dart run flavors_chef`.
+Alternatively, add `flavors_chef` as a dev dependency:
+
+```yaml
+dev_dependencies:
+  flavors_chef: ^0.2.0
+```
+
+Then run it with `dart run flavors_chef`.
 
 ## Usage
 
@@ -144,3 +150,31 @@ scheme wiring. After running the tool:
 - Full Xcode flavor automation (schemes + build configuration cloning).
 - Support for non-interactive generation via configuration files.
 - Automatic invocation of launcher icon and splash generators.
+
+## Contributing
+
+### Running Tests with Coverage
+
+```bash
+# Run tests with coverage
+dart test --coverage=coverage
+
+# Generate coverage report
+dart run coverage:format_coverage --lcov --in=coverage --out=coverage/lcov.info --packages=.dart_tool/package_config.json --report-on=lib
+
+# View coverage report (requires lcov installed)
+genhtml coverage/lcov.info -o coverage/html
+open coverage/html/index.html
+```
+
+### Pre-Publish Checklist
+
+Before publishing a new version:
+
+1. Run tests: `dart test`
+2. Check coverage: `dart test --coverage=coverage`
+3. Format code: `dart format .`
+4. Analyze code: `dart analyze`
+5. Verify pubspec: `dart pub publish --dry-run`
+6. Update `CHANGELOG.md`
+7. Update version in `pubspec.yaml`
